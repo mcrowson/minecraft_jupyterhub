@@ -1,0 +1,51 @@
+version: "3"
+services:
+  jupyterhub:
+    container_name: "hub"
+    build:
+      context: .
+      dockerfile: jupyterhub.Dockerfile
+    ports:
+      - 443:443
+    environment:
+      - OAUTH_CALLBACK_URL=https://subd.domain.com/hub/oauth_callback
+      - GITHUB_CLIENT_ID=asdfasdfasdf
+      - GITHUB_CLIENT_SECRET=asdfasdfasdfasdfasdf
+      - SSL_KEY=/etc/letsencrypt/privkey.pem
+      - SSL_CERT=/etc/letsencrypt/cert.pem
+    volumes:
+      - "./jupyhub_data:/srv/jupyterhub"
+      - "./certs/subd.domain.com:/etc/letsencrypt"
+      - "./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py"
+      - "./hub_admin.txt:/srv/jupyterhub/hub_admin.txt"
+      - "./hub_users.txt:/srv/jupyterhub/hub_users.txt"
+    restart: always
+    links:
+      - minecraft-server
+  minecraft-server:
+    container_name: mc
+    image: itzg/minecraft-server
+    ports:
+      - "25565:25565"
+      - "4711:4711"
+    volumes:
+      - "./mc_data:/data"
+      - "./plugins:/data/plugins"
+      - "./mc_admin.json:/data/ops.json"
+      - "./mc_users.json:/data/whitelist.json"
+    environment:
+      EULA: "TRUE"
+      ENABLE_COMMAND_BLOCK: "TRUE"
+      SNOOPER_ENABLED: "FALSE"
+      SPAWN_MONSTERS: "FALSE"
+      SPAWN_NPCS: "TRUE"
+      SPAWN_ANIMALS: "TRUE"
+      MODE: "creative"
+      PVP: "FALSE"
+      TYPE: "SPIGOT"
+      VERSION: "1.13.1"
+
+    tty: true
+    stdin_open: true
+    restart: always
+    command: "nogui --noconsole"
