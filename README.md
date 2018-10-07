@@ -25,6 +25,8 @@ Enter the GitHub usernames of admin into the `hub_admin.txt` file with each name
 of all users (including admin) into the `hub_users.txt` file with each name being a new line. This only allows those listed usernames to
 create notebooks.
 
+Additional users can be added from the Jupyter Admin GUI.
+
 Interaction with the Minecraft server will be done through the [mcpi](https://github.com/martinohanlon/mcpi) library.
 
 ##### Certificates
@@ -43,6 +45,8 @@ This will be running a Spigot Minecraft 1.13.1 server with the RaspberryJuice Pl
 We also whitelist for the Minecraft server. This is a bit more complex as it requires knowing the UUID of the player. These can be
 looked up on websites like [https://mcuuid.net](https://mcuuid.net). Once you know these you can update the
 `mc_admin.json` and `mc_users.json` files with the appropriate Minecraft usernames.
+
+Once the server is live, you can add additional Minecraft users via `/whitelist add <playername>` command
 
 The project is mainly driven by Docker. First make some directories for mounting the data, and then launch
 the services.
