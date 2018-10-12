@@ -1,4 +1,4 @@
-version: 3
+version: "3"
 services:
   jupyterhub:
     build: ./jupyterhub
@@ -7,21 +7,24 @@ services:
       - GITHUB_CLIENT_ID=asdfasdfasdf
       - GITHUB_CLIENT_SECRET=asdfasdfasdfasdfasdf
       - VIRTUAL_HOST=sub.domain.com
+      - VIRTUAL_PORT=8000
       - LETSENCRYPT_HOST=sub.domain.com
       - LETSENCRYPT_EMAIL=admin@domain.com
       - JUPYTERHUB_ADMIN=githubusername
     volumes:
       - jupyter_hub:/srv/jupyterhub
-      - certs:/etc/letsencrypt
-      - ./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
     restart: always
     networks:
-      proxy-tier
-      default
+      - proxy-tier
+      - default
   minecraft:
-    build: ./minecraft
+    image: itzg/minecraft-server
     volumes:
       - minecraft:/data
+    ports:
+      - 25565:25565
+    expose:
+      - "4711"
     environment:
       - EULA=TRUE
       - ENABLE_COMMAND_BLOCK=TRUE
@@ -33,6 +36,8 @@ services:
       - PVP=FALSE
       - TYPE=SPIGOT
       - VERSION=1.13.1
+      - MODS=https://github.com/zhuowei/RaspberryJuice/raw/master/jars/raspberryjuice-1.11.jar
+      - MAX_PLAYERS=25
       - WHITELIST=MINECRAFTUSERNAME
       - OP=MINECRAFTUSERNAME
     tty: true
@@ -40,17 +45,16 @@ services:
     restart: always
     command: nogui --noconsole
     networks:
-      proxy-tier
-      default
+      - proxy-tier
+      - default
   proxy:
     image: jwilder/nginx-proxy:alpine
     restart: always
     ports:
       - 80:80
       - 443:443
-      - 25565:25565
     labels:
-      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: true
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
     volumes:
       - certs:/etc/nginx/certs:ro
       - vhost.d:/etc/nginx/vhost.d
@@ -58,7 +62,6 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:
       - proxy-tier
-
   letsencrypt-companion:
     image: jrcs/letsencrypt-nginx-proxy-companion
     restart: always
@@ -71,7 +74,6 @@ services:
       - proxy-tier
     depends_on:
       - proxy
-
 volumes:
   jupyter_hub:
   minecraft:
