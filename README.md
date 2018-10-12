@@ -25,7 +25,7 @@ sections below are the services in the docker-compose.yml file.
 - VIRTUAL_HOST: The domain that jupyterhub will be accessed at. eg sub.domain.com
 - LETSENCRYPT_HOST: The domain that jupyterhub will be accessed at. eg sub.domain.com
 - LETSENCRYPT_EMAIL: The contact email for Let's Encrypt eg. admin@domain.com
-- JUPYTERHUB_ADMIN: The GitHub username for the first Admin account. Subsequent users should be added through the JupyterHub GUI after launch.
+- JUPYTERHUB_ADMIN: The GitHub username for the first Admin account; supply multieple names separated by commas. Subsequent users can be added through the JupyterHub GUI after launch.
 #### minecraft
 - WHITELIST: The Minecraft username that will initially have access. Additional accoutns can be added in game via the /whitelist command.
 - OP: The Minecraft username that will initially have access (also granting them operator status). Additional users can be given operator status in game via the /op command.
@@ -39,7 +39,7 @@ open up a Jupyter notebook at your domain, and try the following.
 
 ```python
 from mcpi import minecraft
-mc = minecraft.Minecraft.create()
+mc = minecraft.Minecraft.create('minecraft')
 mc.postToChat("Hello Minecraft World")
 ```
 If you see your message in the chat, all is working!
