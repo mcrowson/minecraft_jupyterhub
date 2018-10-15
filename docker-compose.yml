@@ -38,14 +38,9 @@ services:
       - VERSION=1.13.1
       - MODS=https://github.com/zhuowei/RaspberryJuice/raw/master/jars/raspberryjuice-1.11.jar
       - MAX_PLAYERS=25
-      - WHITELIST=MINECRAFTUSERNAME
-      - OP=MINECRAFTUSERNAME
-    tty: true
-    stdin_open: true
     restart: always
-    command: nogui --noconsole
+    command: --noconsole
     networks:
-      - proxy-tier
       - default
   proxy:
     image: jwilder/nginx-proxy:alpine
