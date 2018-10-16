@@ -3,10 +3,16 @@ This repo shows how to setup a Minecraft Server that gives users the ability to 
 Docker all the things. This will be running a Spigot Minecraft 1.13.1 server with the RaspberryJuice Plugin that allows
 Python API calls. Interaction with the Minecraft server will be done through the [mcpi](https://github.com/martinohanlon/mcpi) library.
 
-I am hosting this on a t3.medium on AWS for 25 students.
+Jupyterhub                 |  Minecraft
+:-------------------------:|:-------------------------:
+![](https://user-images.githubusercontent.com/6452882/47052283-b2721580-d175-11e8-85f9-1aa644a11258.png)  |  ![](https://user-images.githubusercontent.com/6452882/47052284-b2721580-d175-11e8-97dc-52ae7e4110b8.png)
+
+
+
+This project was created for the purposes of teaching introductory Python concepts.
 
 ### Setup
-This will run a Minecraft server and JupyterHub behind and NGINX proxy. SSL is done via Let's Encrypt for secure access to JupyterHub. Students
+This will run a Minecraft server and JupyterHub behind and NGINX proxy. SSL is done via Let's Encrypt for secure access to JupyterHub. Users
 auth to the JupyterHub via GitHub OAuth. 
 
 Create a GitHub OAuth application that we will link to JupyterHub [https://github.com/settings/applications/new](https://github.com/settings/applications/new)
@@ -26,13 +32,15 @@ sections below are the services in the docker-compose.yml file.
 - LETSENCRYPT_HOST: The domain that jupyterhub will be accessed at. eg sub.domain.com
 - LETSENCRYPT_EMAIL: The contact email for Let's Encrypt eg. admin@domain.com
 - JUPYTERHUB_ADMIN: The GitHub username for the first Admin account; supply multieple names separated by commas. Subsequent users can be added through the JupyterHub GUI after launch.
-#### minecraft
-- WHITELIST: The Minecraft username that will initially have access. Additional accoutns can be added in game via the /whitelist command.
-- OP: The Minecraft username that will initially have access (also granting them operator status). Additional users can be given operator status in game via the /op command.
-
 
 ### Launch
 `docker-compose up -d`
+
+To give your minecraft user Operator privleage, open up RCON cli.
+```bash
+docker-compose exec minecraft rcon-cli
+> op MINECRAFTNAME
+```
 
 Open your Minecraft Java client and connect to your Multiplayer Server, once you're in game,
 open up a Jupyter notebook at your domain, and try the following.
@@ -44,11 +52,6 @@ mc.postToChat("Hello Minecraft World")
 ```
 If you see your message in the chat, all is working!
 
-To give your minecraft user Operator privleage, open up RCON cli.
-```bash
-docker-compose exec minecraft rcon-cli
-> op MINECRAFTNAME
-```
 
 ### Additional Resources
 I found the following very helpful in setting this up:
