@@ -44,6 +44,12 @@ mc.postToChat("Hello Minecraft World")
 ```
 If you see your message in the chat, all is working!
 
+To give your minecraft user Operator privleage, open up RCON cli.
+```bash
+docker-compose exec minecraft rcon-cli
+> op MINECRAFTNAME
+```
+
 ### Additional Resources
 I found the following very helpful in setting this up:
  - [CoderDojo Docs](https://coderdojotc.readthedocs.io/projects/python-minecraft/en/latest)
