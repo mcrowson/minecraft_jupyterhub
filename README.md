@@ -3,8 +3,11 @@ This repo shows how to setup a Minecraft Server that gives users the ability to 
 Docker all the things. This will be running a Spigot Minecraft 1.13.1 server with the RaspberryJuice Plugin that allows
 Python API calls. Interaction with the Minecraft server will be done through the [mcpi](https://github.com/martinohanlon/mcpi) library.
 
-![jupyterhub_hello](https://user-images.githubusercontent.com/6452882/47052283-b2721580-d175-11e8-85f9-1aa644a11258.png)
-![minecraft_message](https://user-images.githubusercontent.com/6452882/47052284-b2721580-d175-11e8-97dc-52ae7e4110b8.png)
+Jupyterhub                 |  Minecraft
+:-------------------------:|:-------------------------:
+![](https://user-images.githubusercontent.com/6452882/47052283-b2721580-d175-11e8-85f9-1aa644a11258.png)  |  ![](https://user-images.githubusercontent.com/6452882/47052284-b2721580-d175-11e8-97dc-52ae7e4110b8.png)
+
+
 
 This project was created for the purposes of teaching introductory Python concepts.
 
