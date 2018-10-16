@@ -13,6 +13,7 @@ services:
       - JUPYTERHUB_ADMIN=githubusername
     volumes:
       - jupyter_hub:/srv/jupyterhub
+      - notebook_users:/home
     restart: always
     networks:
       - proxy-tier
@@ -71,6 +72,7 @@ services:
       - proxy
 volumes:
   jupyter_hub:
+  notebook_users:
   minecraft:
   vhost.d:
   html:
