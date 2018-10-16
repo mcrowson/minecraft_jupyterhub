@@ -1,7 +1,8 @@
 # Minecraft with Python
 This repo shows how to setup a Minecraft Server that gives users the ability to change the world through Python.
 Docker all the things. This will be running a Spigot Minecraft 1.13.1 server with the RaspberryJuice Plugin that allows
-Python API calls. Interaction with the Minecraft server will be done through the [mcpi](https://github.com/martinohanlon/mcpi) library.
+Python API calls. Interaction with the Minecraft server will be done through the [mcpi](https://github.com/martinohanlon/mcpi) library with 
+API instructions available [here](https://www.stuffaboutcode.com/p/minecraft-api-reference.html).
 
 Jupyterhub                 |  Minecraft
 :-------------------------:|:-------------------------:
