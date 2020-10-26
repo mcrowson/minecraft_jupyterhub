@@ -36,8 +36,8 @@ services:
       - MODE=creative
       - PVP=FALSE
       - TYPE=SPIGOT
-      - VERSION=1.13.1
-      - MODS=https://github.com/zhuowei/RaspberryJuice/raw/master/jars/raspberryjuice-1.11.jar
+      - VERSION=1.16.3
+      - MODS=https://github.com/zhuowei/RaspberryJuice/raw/master/jars/raspberryjuice-1.12.1.jar
       - MAX_PLAYERS=25
     restart: always
     command: --noconsole
